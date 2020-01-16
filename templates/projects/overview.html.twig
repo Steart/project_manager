@@ -35,6 +35,7 @@
                         <th><i class="fa {{ project.isVisible == true ? 'fa-check' : 'fa-close' }}"></i></th>
                         <th>{{ project.contact.name }}</th>
                         <th><a class="btn btn-sm bg-secondary text-white" href="/project/edit/{{ project.id }}">Bewerken</a></th>
+                        <th><a class="btn btn-sm bg-secondary text-white" href="/project/details/{{ project.id }}">Details</a></th>
                     </tr>
                 {% endfor %}
                 </tbody>

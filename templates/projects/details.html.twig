@@ -1,0 +1,135 @@
+{% extends 'dashboard/base.html.twig' %}
+
+{% block title %}Project Manager | Project details!{% endblock %}
+
+{% block body %}
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Project details</h1>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+
+
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class=" col-md-9 col-lg-9 card-deck ">
+                            <table class="table table-user-information">
+                                <tbody>
+                                <tr>
+                                    <td>Projectnaam:</td>
+                                    <td>{{ project.name }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Totale uren:</td>
+                                    <td>
+                                        {% if project_hours is defined %}
+                                            {% for project_hour in project_hours %}
+                                                {% set tl = tl + project_hours.hours %}
+                                            {% endfor%}
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Adres:</td>
+                                    <td>
+                                        <table class="table table-user-information card bg-info">
+                                            <tbody>
+                                            <tr>
+                                                <td>Straatnaam:</td>
+                                                <td>{{ project.address.streetName }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Huisnummer:</td>
+                                                <td>{{ project.address.houseNumber }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Huisnummer Toevoeging:</td>
+                                                <td>{{ project.address.houseNumberAddition }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Postcode:</td>
+                                                <td>{{ project.address.postalCode }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Stad:</td>
+                                                <td>{{ project.address.city }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Land:</td>
+                                                <td>{{ project.address.country }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Start datum:</td>
+                                    <td>{{ project.startDate|date("d-m-Y") }}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Is zichtbaar:</td>
+                                    <td><i class="fa {{ project.isVisible == true ? 'fa-check' : 'fa-close' }}"></i></td>
+                                </tr>
+
+                                <tr>
+                                    <td>Contact persoon:</td>
+                                    <td>
+                                        {{ project.contact.name }}
+                                        <a href="/contact/edit/{{ project.contact.id }}" class="btn btn-sm btn-outline-secondary">Bewerk contact</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Contact persoon adres:</td>
+                                    <td>
+                                        <table class="table table-user-information card bg-info">
+                                            <tbody>
+                                            <tr>
+                                                <td>Straatnaam:</td>
+                                                <td>{{ project.contact.address.streetName }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Huisnummer:</td>
+                                                <td>{{ project.contact.address.houseNumber }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Huisnummer Toevoeging:</td>
+                                                <td>{{ project.contact.address.houseNumberAddition }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Postcode:</td>
+                                                <td>{{ project.contact.address.postalCode }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Stad:</td>
+                                                <td>{{ project.contact.address.city }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Land:</td>
+                                                <td>{{ project.contact.address.country }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <a href="/project/edit/{{ project.id }}" class="btn btn-sm btn-outline-secondary">Bewerk project</a>
+                                    </td>
+                                    <td>
+                                        <a href="/project/book-hours/{{ project.id }}" class="btn btn-sm btn-outline-secondary">Boek uren bij</a>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

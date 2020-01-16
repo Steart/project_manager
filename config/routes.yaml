@@ -15,6 +15,9 @@ project_index:
 project_new:
      path: /project/new
      controller: App\Controller\ProjectController::new
+project_details:
+     path: /project/details/{id<\d+>}
+     controller: App\Controller\ProjectController::detail
 project_edit:
      path: /project/edit/{id<\d+>}
      controller: App\Controller\ProjectController::edit

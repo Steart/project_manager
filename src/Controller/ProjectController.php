@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Project;
+use App\Entity\ProjectHoursBookings;
 use App\Form\ProjectType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -71,6 +72,23 @@ class ProjectController extends SecurityController
         return $this->render('projects/edit.html.twig', [
             'form' => $form->createView(),
             'project' => $project,
+        ]);
+    }
+
+    /**
+     * @param Project $project
+     * @return Response
+     */
+    public function detail(Project $project)
+    {
+//        $projectHours = $this->getDoctrine()
+//            ->getRepository(ProjectHoursBookings::class)
+//            ->findBy(['name' => $project->getId()]);
+
+
+        return $this->render('projects/details.html.twig', [
+            'project' => $project,
+//            'project_hours' => $projectHours,
         ]);
     }
 
