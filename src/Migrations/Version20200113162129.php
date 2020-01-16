@@ -23,7 +23,7 @@ final class Version20200113162129 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('ALTER TABLE project ADD contact_id INT NOT NULL');
-        $this->addSql('ALTER TABLE project ADD CONSTRAINT FK_2FB3D0EEE7A1254A FOREIGN KEY (contact_id) REFERENCES contact (id)');
+        $this->addSql('ALTER TABLE project ADD CONSTRAINT FK_2FB3D0EEE7A1254A FOREIGN KEY (contact_id) REFERENCES contacts (id)');
         $this->addSql('CREATE INDEX IDX_2FB3D0EEE7A1254A ON project (contact_id)');
     }
 
