@@ -27,7 +27,9 @@
                                     </tr>
                                     <tr>
                                         <td>Adres:</td>
-                                        <td>
+
+                                        {% if project.address.street_name is defined %}
+                                            <td>
                                             <table class="table table-user-information card bg-info">
                                                 <tbody>
                                                 <tr>
@@ -57,6 +59,11 @@
                                                 </tbody>
                                             </table>
                                         </td>
+                                        {% else %}
+                                            <td>
+                                                Geen adres opgegeven.
+                                            </td>
+                                        {% endif %}
                                     </tr>
                                     <tr>
                                         <td>Start datum:</td>

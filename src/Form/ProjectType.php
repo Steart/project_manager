@@ -26,14 +26,21 @@ class ProjectType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('address', AddressType::class)
-            ->add('start_date', DateType::class)
+            ->add('address', AddressType::class, ['required' => false])
+            ->add('start_date', DateType::class, [
+                'format' => 'dd-MM-yyyy',
+                'placeholder' => [
+                    'year' => 'Jaar', 'month' => 'Maand', 'day' => 'Dag',
+                ],
+                'required' => false,
+            ])
             ->add('contact', EntityType::class, [
                     // looks for choices from this entity
                     'class' => Contact::class,
 
                     // uses the User.username property as the visible option string
                     'choice_label' => 'name',
+                    'placeholder' => '-- Selecteer Contact --'
                 ]
             )
             ->add('is_visible', CheckboxType::class, ['required' => false])

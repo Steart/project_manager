@@ -30,7 +30,8 @@ class AddressType extends AbstractType
             ->add('city')
             ->add('country', ChoiceType::class, [
                 'choices' =>
-                    array_flip(Countries::getNames())
+                    array_flip(Countries::getNames()),
+                'placeholder' => '-- Selecteer Land --'
             ]);
     }
 

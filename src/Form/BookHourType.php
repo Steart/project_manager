@@ -26,7 +26,6 @@ class BookHourType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('id', HiddenType::class)
             ->add('project', EntityType::class, [
                     // looks for choices from this entity
                     'class' => Project::class,
