@@ -30,7 +30,7 @@ class Contact
     private $address;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="contact")
+     * @ORM\OneToMany(targetEntity="App\Entity\Project", mappedBy="contacts")
      */
     private $projects;
 
