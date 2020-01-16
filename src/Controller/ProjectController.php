@@ -81,14 +81,21 @@ class ProjectController extends SecurityController
      */
     public function detail(Project $project)
     {
-//        $projectHours = $this->getDoctrine()
-//            ->getRepository(ProjectHoursBookings::class)
-//            ->findBy(['name' => $project->getId()]);
+        $projectHours = $this->getDoctrine()
+            ->getRepository(ProjectHoursBookings::class)
+            ->findBy(['project' => $project->getId()]);
 
+        $dedicatedProjectHours = 0;
+        if (!empty($projectHours)) {
+            foreach ($projectHours as $projectHour) {
+                $dedicatedProjectHours += $projectHour->getHours();
+            }
+        }
 
         return $this->render('projects/details.html.twig', [
             'project' => $project,
-//            'project_hours' => $projectHours,
+            'project_hours' => $projectHours,
+            'dedicated_project_hours' => $dedicatedProjectHours,
         ]);
     }
 

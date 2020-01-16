@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Project;
 use App\Entity\ProjectHoursBookings;
 use App\Form\BookHourType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -28,12 +29,17 @@ class ProjectHoursController extends AbstractController
     }
 
     /**
+     * @param Project $project
      * @param Request $request
      * @return RedirectResponse|Response
      */
-    public function new(Request $request)
+    public function new(Project $project, Request $request)
     {
         $projectBookHours = new ProjectHoursBookings();
+        if ($project !== null) {
+            $projectBookHours->setProject($project);
+        }
+
         $form = $this->createForm(BookHourType::class, $projectBookHours);
 
         $form->handleRequest($request);
