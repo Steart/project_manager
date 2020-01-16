@@ -6,4 +6,33 @@ controllers:
      type: annotation
 index:
      path: /
-     controller: App\Controller\Dashboard::index
+     controller: App\Controller\DashboardController::index
+
+## Projects
+project_index:
+     path: /projects
+     controller: App\Controller\ProjectController::index
+project_new:
+     path: /project/new
+     controller: App\Controller\ProjectController::new
+project_edit:
+     path: /project/edit/{id<\d+>}
+     controller: App\Controller\ProjectController::edit
+project_book_hours_new:
+     path: /project/book-hours
+     controller: App\Controller\ProjectHoursController::new
+projects_hours_overview:
+     path: /projects-hours-overview
+     controller: App\Controller\ProjectHoursController::index
+
+## Contacts
+contact_index:
+     path: /contacts
+     controller: App\Controller\ContactController::index
+contact_new:
+     path: /contact/new
+     controller: App\Controller\ContactController::new
+contact_edit:
+     path: /contact/edit/{id<\d+>}
+     controller: App\Controller\ContactController::edit
+
