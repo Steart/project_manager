@@ -29,16 +29,39 @@ class ProjectHoursController extends AbstractController
     }
 
     /**
+     * @param Request $request
+     * @return RedirectResponse|Response
+     */
+    public function new(Request $request)
+    {
+        $projectBookHours = new ProjectHoursBookings();
+        $form = $this->createForm(BookHourType::class, $projectBookHours);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($projectBookHours);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Project uren succesvol bijgeboekt.');
+
+            return $this->redirectToRoute('projects_hours_overview');
+        }
+
+        return $this->render('projects/project_hours_edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
      * @param Project $project
      * @param Request $request
      * @return RedirectResponse|Response
      */
-    public function new(Project $project, Request $request)
+    public function newFromProject(Project $project, Request $request)
     {
         $projectBookHours = new ProjectHoursBookings();
-        if ($project !== null) {
-            $projectBookHours->setProject($project);
-        }
+        $projectBookHours->setProject($project);
 
         $form = $this->createForm(BookHourType::class, $projectBookHours);
 

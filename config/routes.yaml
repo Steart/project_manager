@@ -26,7 +26,7 @@ project_book_hours_new:
      controller: App\Controller\ProjectHoursController::new
 project_book_hours_to_project:
      path: /project/book-hours/{id<\d+>}
-     controller: App\Controller\ProjectHoursController::new
+     controller: App\Controller\ProjectHoursController::newFromProject
 projects_hours_overview:
      path: /projects-hours-overview
      controller: App\Controller\ProjectHoursController::index

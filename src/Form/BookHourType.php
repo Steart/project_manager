@@ -34,7 +34,12 @@ class BookHourType extends AbstractType
                     'choice_label' => 'name',
                 ]
             )
-            ->add('date', DateType::class)
+            ->add('date', DateType::class, [
+                'format' => 'dd-MM-yyyy',
+                'placeholder' => [
+                    'year' => 'Jaar', 'month' => 'Maand', 'day' => 'Dag',
+                ],
+            ])
             ->add('hours', IntegerType::class)
             ->add('save', SubmitType::class);
     }
